@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>C Programming Lab</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f6f8;
+      color: #1f2937;
+      line-height: 1.5;
+    }
+    header {
+      background: #111827;
+      color: white;
+      padding: 28px 18px;
+      text-align: center;
+    }
+    header h1 { font-size: 30px; margin-bottom: 6px; }
+    header p { color: #d1d5db; }
+    .container {
+      width: min(1100px, 92%);
+      margin: 25px auto 50px;
+    }
+    .search {
+      width: 100%;
+      padding: 14px 16px;
+      border: 1px solid #d1d5db;
+      border-radius: 10px;
+      font-size: 16px;
+      margin-bottom: 22px;
+      outline: none;
+    }
+    .search:focus { border-color: #374151; }
+    .program {
+      background: white;
+      border-radius: 12px;
+      margin-bottom: 22px;
+      overflow: hidden;
+      box-shadow: 0 3px 12px rgba(0,0,0,.08);
+      border: 1px solid #e5e7eb;
+    }
+    .program-header {
+      padding: 16px 18px;
+      background: #1f2937;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+    .program-header h2 { font-size: 18px; }
+    .copy-btn {
+      border: 0;
+      background: white;
+      color: #111827;
+      padding: 8px 13px;
+      border-radius: 7px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .copy-btn:hover { opacity: .88; }
+    pre {
+      margin: 0;
+      padding: 18px;
+      overflow-x: auto;
+      background: #0f172a;
+      color: #e5e7eb;
+      font-size: 14px;
+      line-height: 1.55;
+    }
+    .no-result {
+      display: none;
+      text-align: center;
+      padding: 30px;
+      color: #6b7280;
+    }
+    footer {
+      text-align: center;
+      padding: 20px;
+      color: #6b7280;
+      font-size: 14px;
+    }
+    @media (max-width: 600px) {
+      header h1 { font-size: 24px; }
+      .program-header { align-items: flex-start; }
+      .program-header h2 { font-size: 16px; }
+      pre { font-size: 13px; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>C Programming Lab</h1>
+  <p>BCA 1st Semester • C Programs</p>
+</header>
+
+<main class="container">
+  <input
+    type="text"
+    id="search"
+    class="search"
+    placeholder="Search a program..."
+    oninput="searchPrograms()"
+  >
+
+  <div id="programList">
+
+    <section class="program" data-title="area of circle circumference">
+      <div class="program-header">
+        <h2>1. Area of Circle & Circumference</h2>
+        <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
+      </div>
+      <pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+    float r, area, circumference;
+
+    printf("Enter radius: ");
+    scanf("%f", &amp;r);
+
+    area = 3.14 * r * r;
+    circumference = 2 * 3.14 * r;
+
+    printf("Area = %.2f\n", area);
+    printf("Circumference = %.2f\n", circumference);
+
+    return 0;
+}</code></pre>
+    </section>
+
+    <section class="program" data-title="simple interest">
+      <div class="program-header">
+        <h2>2. Simple Interest</h2>
+        <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
+      </div>
+      <pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+    float p, r, t, si;
+
+    printf("Enter Principal, Rate and Time: ");
+    scanf("%f %f %f", &amp;p, &amp;r, &amp;t);
+
+    si = (p * r * t) / 100;
+
+    printf("Simple Interest = %.2f", si);
+
+    return 0;
+}</code></pre>
+    </section>
+
+    <section class="program" data-title="largest three numbers largest of three">
+      <div class="program-header">
+        <h2>3. Largest of Three Numbers</h2>
+        <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
+      </div>
+      <pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+    int a, b, c;
+
+    printf("Enter three numbers: ");
+    scanf("%d %d %d", &amp;a, &amp;b, &amp;c);
+
+    if (a &gt;= b &amp;&amp; a &gt;= c)
+        printf("Largest = %d", a);
+    else if (b &gt;= a &amp;&amp; b &gt;= c)
+        printf("Largest = %d", b);
+    else
+        printf("Largest = %d", c);
+
+    return 0;
+}</code></pre>
+    </section>
+
+    <section class="program" data-title="quadratic equations quadratic equation">
+      <div class="program-header">
+        <h2>4. Quadratic Equations</h2>
+        <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
+      </div>
+      <pre><code>#include &lt;stdio.h&gt;
+#include &lt;math.h&gt;
+
+int main() {
+    float a, b, c, d, root1, root2;
+
+    printf("Enter a, b and c: ");
+    scanf("%f %f %f", &amp;a, &amp;b, &amp;c);
+
+    d = b * b - 4 * a * c;
+
+    if (d &gt; 0) {
+        root1 = (-b + sqrt(d)) / (2 * a);
+        root2 = (-b - sqrt(d)) / (2 * a);
+
+        printf("Root 1 = %.2f\n", root1);
+        printf("Root 2 = %.2f", root2);
+    }
+    else if (d == 0) {
+        root1 = -b / (2 * a);
+        printf("Both roots = %.2f", root1);
+    }
+    else {
+        printf("Roots are imaginary");
+    }
+
+    return 0;
+}</code></pre>
+    </section>
+
+    <section class="program" data-title="gcd greatest common divisor">
+      <div class="program-header">
+        <h2>5. GCD</h2>
+        <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
+      </div>
+      <pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+    int a, b, rem;
+
+    printf("Enter two numbers: ");
+    scanf("%d %d", &amp;a, &amp;b);
+
+    while (b != 0) {
+        rem = a % b;
+        a = b;
+        b = rem;
+    }
+
+    printf("GCD = %d", a);
+
+    return 0;
+}</code></pre>
+    </section>
+
+    <section class="program" data-title="prime number">
+      <div class="program-header">
+        <h2>6. Prime Number</h2>
+        <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
+      </div>
+      <pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+    int n, i, flag = 0;
+
+    printf("Enter a number: ");
+    scanf("%d", &amp;n);
+
+    if (n &lt;= 1)
+        flag = 1;
+
+    for (i = 2; i &lt;= n / 2; i++) {
+        if (n % i == 0) {
+            flag = 1;
+            break;
+        }
+    }
+
+    if (flag == 0)
+        printf("%d is Prime", n);
+    else
+        printf("%d is Not Prime", n);
+
+    return 0;
+}</code></pre>
+    </section>
+
+    <section class="program" data-title="reverse number">
+      <div class="program-header">
+        <h2>7. Reverse Number</h2>
+        <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
+      </div>
+      <pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+    int n, reverse = 0, digit;
+
+    printf("Enter a number: ");
+    scanf("%d", &amp;n);
+
+    while (n != 0) {
+        digit = n % 10;
+        reverse = reverse * 10 + digit;
+        n = n / 10;
+    }
+
+    printf("Reverse = %d", reverse);
+
+    return 0;
+}</code></pre>
+    </section>
+
+    <section class="program" data-title="swapping two numbers swap">
+      <div class="program-header">
+        <h2>8. Swapping of Two Numbers</h2>
+        <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
+      </div>
+      <pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+    int a, b, temp;
+
+    printf("Enter two numbers: ");
+    scanf("%d %d", &amp;a, &amp;b);
+
+    temp = a;
+    a = b;
+    b = temp;
+
+    printf("After swapping:\n");
+    printf("a = %d\n", a);
+    printf("b = %d", b);
+
+    return 0;
+}</code></pre>
+    </section>
+
+    <section class="program" data-title="fibonacci series fibonacci">
+      <div class="program-header">
+        <h2>9. Fibonacci Series</h2>
+        <button class="copy-btn" onclick="copyCode(this)">Copy Code</button>
+      </div>
+      <pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+    int n, a = 0, b = 1, c, i;
+
+    printf("Enter number of terms: ");
+    scanf("%d", &amp;n);
+
+    printf("Fibonacci Series: ");
+
+    for (i = 1; i &lt;= n; i++) {
+        printf("%d ", a);
+        c = a + b;
+        a = b;
+        b = c;
+    }
+
+    return 0;
+}</code></pre>
+    </section>
+
+  </div>
+
+  <div id="noResult" class="no-result">No program found.</div>
+</main>
+
+<footer>
+  C Programming Lab • BCA 1st Semester
+</footer>
+
+<script>
+  function copyCode(button) {
+    const code = button.closest(".program").querySelector("code").innerText;
+
+    navigator.clipboard.writeText(code).then(() => {
+      const oldText = button.innerText;
+      button.innerText = "Copied!";
+      setTimeout(() => {
+        button.innerText = oldText;
+      }, 1200);
+    }).catch(() => {
+      alert("Copy failed. Please select and copy the code manually.");
+    });
+  }
+
+  function searchPrograms() {
+    const query = document.getElementById("search").value.toLowerCase().trim();
+    const programs = document.querySelectorAll(".program");
+    let visible = 0;
+
+    programs.forEach(program => {
+      const title = program.dataset.title.toLowerCase();
+      if (title.includes(query)) {
+        program.style.display = "block";
+        visible++;
+      } else {
+        program.style.display = "none";
+      }
+    });
+
+    document.getElementById("noResult").style.display =
+      visible === 0 ? "block" : "none";
+  }
+</script>
+
+</body>
+</html>
